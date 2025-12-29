@@ -1,0 +1,13 @@
+TreeNode* sortedArrayToBST(vector<int>& nums){
+    int mid = nums.size() / 2; // Take the midlle element as a root of the tree 
+    if (mid >= nums.size()) return nullptr; 
+    TreeNode* root = new TreeNode(nums[mid]); 
+    
+    vector<int>leftArr(nums.begin(), nums.begin() + mid); // put the left half as a left branch of the tree 
+    vector<int>rightArr(nums.begin() + mid + 1, nums.end());// put the right half as a right branch of the tree
+    
+    root->left = sortedArrayToBST(leftArr); // traverse the whole tree start from left part 
+    root->right = sortedArrayToBST(rightArr);
+    
+    return root;  
+    }
